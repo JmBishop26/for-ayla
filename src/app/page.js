@@ -1,95 +1,155 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client"
+import { useState } from "react";
+import styles from "../styles/main.module.scss";
+import { Container } from 'semantic-ui-react'
 
 export default function Home() {
+
+  const [noButtonStyle, setNoButtonStyle] = useState({
+    position: "",
+    left: 0,
+    top: 0,
+  });
+
+  const [openNext, setOpenNext] = useState({
+    clicked: false,
+    firstPartDisplay: "block",
+    secondPartDisplay: "none"
+  })
+
+  const [openLast, setOpenLast] = useState({
+    clicked: false,
+    secondPartDisplay: "block",
+    thirdPartDisplay: "none",
+  })
+
+  const [secondNo, setSecondNo] = useState({
+    display: "inline",
+    width: "fit-content",
+    height: "auto",
+    opacity: "100"
+  });
+
+  const [openEnvelope, setOpenEnvelope] = useState({
+    rotate: "0deg",
+    top: "239",
+    paperTop: "254",
+    zIndex: "2"
+  })
+
+  const handleEnvelopeOpen = () => {
+    setOpenEnvelope({
+      rotate: "180deg",
+      top: "109",
+      paperTop: "150",
+      zIndex: "5"
+    })
+  };
+
+  const handleSecondButtonHover = () => {
+    setSecondNo({
+      display: "none",
+      width: "1000px",
+      height: "700px",
+      opacity: "0"
+    });
+  };
+
+  const handleNoButtonHover = () => {
+    const randomX = Math.floor(Math.random() * window.innerWidth);
+    const randomY = Math.floor(Math.random() * window.innerHeight);
+
+    setNoButtonStyle({
+      position: "absolute",
+      left: randomX,
+      top: randomY,
+    });
+  };
+
+  const handleFirstYesButton = () => {
+    setOpenNext({
+      clicked:true,
+      firstPartDisplay: "none",
+      secondPartDisplay: "block"
+    })
+  }
+
+  const handleSecondYesButton = () => {
+    setOpenLast({
+      clicked: true,
+      secondPartDisplay: "none",
+      thirdPartDisplay: "block",
+    })
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <Container className={styles.container}>
+
+      <div 
+        className={styles.firstPart}
+        style={{ display: `${openNext.firstPartDisplay}` }}
+      >
+        <h1>Can you be my Valentine's Date, Ayla????</h1>
+        <button className={styles.btnYes} onClick={handleFirstYesButton}>
+          <p>YESSSS!</p>
+        </button>
+        <button 
+          className={styles.btnNo}
+          onMouseOver={handleNoButtonHover}
+          style={{ position: `${noButtonStyle.position}`, left: `${noButtonStyle.left}px`, top: `${noButtonStyle.top}px` }}
+        >
+          <p>NO</p>
+        </button>
+      </div>
+
+      <div 
+        className={styles.secondPart}
+        style={{ display: `${openNext.clicked? openLast.secondPartDisplay : openNext.secondPartDisplay}` }}
+      >
+        <h1>
+            true baaa? kase kinikilig na koooo
+        </h1>
+        <button 
+          className={styles.btnYes} onClick={handleSecondYesButton}
+          style={{ width: `${secondNo.width}`, height: `${secondNo.height}`  }}
+        >
+          <p>YESSSS ULIT!</p>
+        </button>
+        <button 
+          className={styles.btnNo}
+          onMouseOver={handleSecondButtonHover}
+          style={{ opacity: `${secondNo.opacity}`}}
+        >
+          <p>NO</p>
+        </button>
+
+      </div>
+
+      <div 
+        className={styles.thirdPart}
+        style={{ display: `${openLast.thirdPartDisplay}` }}
+      >
+       
+        <div className={styles.envelopeContainer}>
+          <div className={styles.envelope}></div>
+          <div className={styles.top}
+            style={{ rotate: `${openEnvelope.rotate}`, top: `${openEnvelope.top}px` }}></div>
+          <div className={styles.right}></div>
+          <div className={styles.left}></div>
+          <div className={styles.bottom}></div>
+          <h1 className={styles.openMe} onClick={handleEnvelopeOpen}>Open Me</h1>
+          <div className={styles.heart}
+            onClick={handleEnvelopeOpen}
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+          </div>
+          <div className={styles.paper}
+          style={{top: `${openEnvelope.paperTop}px`, zIndex: `${openEnvelope.zIndex}` }}>
+            <p>Happy Valentine's Day, Ayla</p>
+            <div className={styles.heart}></div>
+          </div>
         </div>
       </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </Container>
   );
 }

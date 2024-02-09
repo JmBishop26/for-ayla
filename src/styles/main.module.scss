@@ -1,0 +1,211 @@
+@import "./variables.scss";
+.container{
+    height: 100%;
+
+    .firstPart{
+        text-align: center;
+        h1{
+            font-family: $font;
+            text-align: center;
+        }
+        button{
+            border: 0px;
+            color: $white;
+            font-family: $font;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            transition: all ease-in-out 0.1s;
+            &.btnYes{
+                background: rgb(40, 203, 40);
+                margin-right: 1rem;
+                cursor: pointer;
+            }
+            &.btnNo{
+                // position: absolute;
+                background: red;
+            }
+        }
+    }
+    .secondPart{
+        text-align: center;
+        h1{
+            font-family: $font;
+            text-align: center;
+        }
+        button{
+            border: 0px;
+            color: $white;
+            font-family: $font;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            transition: all ease-in-out 1s;
+            &.btnYes{
+                background: rgb(40, 203, 40);
+                margin-right: 1rem;
+                cursor: pointer;
+            }
+            &.btnNo{
+                // position: absolute;
+                background: red;
+            }
+        }
+    }
+
+    .thirdPart{
+        h1{
+            font-family: $font;
+            text-align: center;
+        }
+
+        .envelopeContainer{
+            margin-top:15rem;
+            .envelope{
+                position: relative;
+                width: 280px;
+                height: 180px;
+                margin-left: auto;
+                margin-right: auto;
+                background-color: $envelope;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            }
+            .right{
+                position: absolute;
+                top: 239px;
+                right: 811px;
+                width: 0;
+                height: 0;
+                border-left: 280px solid transparent;
+                border-bottom: 180px solid $dark;
+                z-index: 3;
+            }
+            .left{
+                position: absolute;
+                top: 239px;
+                left: 811px;
+                width: 0;
+                height: 0;
+                border-right: 280px solid transparent;
+                border-bottom: 180px solid $dark;
+                z-index: 3;
+            }
+            .bottom{
+                position: absolute;
+                top: 289px;
+                left: 811px;
+                width: 0;
+                height: 0;
+                border-left: 140px solid transparent; 
+                border-right: 140px solid transparent;
+                border-bottom: 130px solid $darker;
+                z-index: 4;
+            }
+            .top{
+                position: absolute;
+                // top: 239px;
+                left: 811px;
+                width: 0;
+                height: 0;
+                border-left: 140px solid transparent; 
+                border-right: 140px solid transparent;
+                border-top: 130px solid $envelope;
+                z-index: 5;
+            }
+    
+            .paper{
+                position: absolute;
+                width: 250px;
+                height: 150px;
+                background: $paper;
+                z-index: 2;
+                top: 254px;
+                left: 826px;
+                p{
+                    font-family: $font;
+                    text-align: center;
+                    color: #e7e7e7;
+                    font-size: 1.8rem;
+                }
+                .heart {
+                    position: absolute;
+                    width: 30px;
+                    height: 30px;
+                    background-color: red;
+                    transform: rotate(-45deg);
+                    left: 110px;
+                    top: 95px;
+                }
+            
+                .heart::before,
+                .heart::after {
+                    content: '';
+                    position: absolute;
+                    width: 30px;
+                    height: 30px;
+                    background-color: red;
+                    border-radius: 50%;
+                }
+            
+                .heart::before {
+                    top: -18px;
+                    left: 0;
+                }
+            
+                .heart::after {
+                    top: 0;
+                    left: 18px;
+                }
+            }
+
+            .openMe{
+                font-size: 1.2rem;
+                position: absolute;
+                top: 295px;
+                left: 910px;
+                z-index: 10;
+                color: $white;
+                cursor: pointer;
+            }
+
+            .heart {
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                background-color: red;
+                transform: rotate(-45deg);
+                left: 925px;
+                top: 320px;
+                z-index: 8;
+                cursor: pointer;
+            }
+        
+            .heart::before,
+            .heart::after {
+                content: '';
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                background-color: red;
+                border-radius: 50%;
+            }
+        
+            .heart::before {
+                top: -30px;
+                left: 0;
+            }
+        
+            .heart::after {
+                top: 0;
+                left: 30px;
+            }
+        }
+    }
+
+
+}
+.noDisplay{
+    display: none;
+}
